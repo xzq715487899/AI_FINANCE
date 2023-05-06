@@ -1,0 +1,55 @@
+ret1     float64
+ret2     float64
+ret3     float64
+ret4     float64
+ret5     float64
+ret6     float64
+ret7     float64
+ret8     float64
+ret9     float64
+ret10    float64
+ret11    float64
+ret12    float64
+ret13    float64
+ret14    float64
+ret15    float64
+ret16    float64
+ret17    float64
+ret18    float64
+ret19    float64
+ret20    float64
+ret21    float64
+ret22    float64
+ret23    float64
+ret24    float64
+ret25    float64
+ret26    float64
+ret27    float64
+ret28    float64
+ret29    float64
+hour       int64
+day        int64
+dtype: object
+0.08561084452856459
+0.19742108783015858
+0.08171320092706863
+0.16884590679289901
+0.05527269955560538
+0.16953568989316714
+0.06505515942066316
+0.1404221879636058
+0.04194214987887054
+0.19156086338766012
+Best parameters : {'ridge__alpha': 0.0004832930238571752, 'preprocessor__num__smoother__kw_args': 0.0}
+Best cross-validation score : 6.59
+In-sample: CAGR=0.032255 Sharpe ratio=1.26019 maxDD=-0.0590997 maxDDD=550 Calmar ratio=0.545773
+
+Out-of-sample: CAGR=0.0303468 Sharpe ratio=0.938035 maxDD=-0.0534381 maxDDD=233 Calmar ratio=0.567888  Rho=0.100504 PVal=6.69132e-06
+
+Ljung-Box test p-value 10    0.001603
+Name: lb_pvalue, dtype: float64
+average return 0.002827
+[-0.00285253  0.00282477]
+Reject Ho = The population distribution of rule returns has an expected value of zero or less (because p_value is small enough)
+p_value:
+0.024800000000000044
