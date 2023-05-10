@@ -1,0 +1,62 @@
+Borrowing an idea from https://archive.md/4690U, where
+the VIX3M used to be called VXV:
+
+Construct the ContangoBackwardation feature 
+by calculating the ratio: VIX3M/VIX (or alternatively, the ratio VIX6M/VIX) 
+
+VIX3M: 3 month tenor SP500 index options, VIX6M_History_CBOE.csv
+VIX6M: 6 month tenor SP500 index options, VIX3M_History_CBOE.csv
+VIX: 1 month tenor (approx) SP500 index options, VIX_History_CBOE.csv
+
+The data is from the CBOE:
+https://www.cboe.com/us/indices/dashboard/vix3m/
+https://www.cboe.com/us/indices/dashboard/vix6m/
+https://www.cboe.com/tradable_products/vix/vix_historical_data/
+
+The ratio VIX3M/VIX (VIX6M/VIX) measures:
+the slope of the term structure curve of the VIX futures contracts
+
+You can see the term structure of the VIX futures contracts here:
+http://vixcentral.com/
+All commodities traded with futures contracts have a similar term structure curve.
+It should remind you of the yield curve and plays a similar role.
+
+A value of VIX3M/VIX above 1 indicates "contango."
+Contango is the name for the normal positive slope of the term structure curve.
+
+A value of the ratio below 1 indicates "backwardation."
+Backwardation is the abnormal (and short-lived), negative slope.
+
+Our VIX3M/VIX is a shortcut for the more accurate ContangoBackwardation indicator  
+using the relation between vx.1 (1 month tenor) and vx.2 (2 month tenor) that
+you can calculate using data from here: 
+https://www.cboe.com/us/futures/market_statistics/historical_data/
+This is a rather complicated task, so we prefer the shortcut version.
+
+VIX3M/VIX < 1 ("backwardation") means potential "trouble ahead" for the S&P500 index.
+You can see in VIXContangoBackwardation.xlsx how 
+S&P500 crashes are usually shortly preceded or accompanied by VIX3M/VIX < 1.
+However,  crash signal does not always work: 
+the presence of our VIX3M/VIX < 1 is no guarantee of a coming crash.
+In any case, keep in mind that our VIX3M/VIX 
+is actually a shortcut, as we mentioned above.
+
+See these testimonials of the real ContangoBackwardation indicator's efficacy:
+https://archive.md/xJZEI
+https://archive.md/scb3N
+
+Note:
+for the VIX futures,  "contango/backwardation" is "upwardly/downwardly sloping" and "contango/upwardly sloping" is normal.
+for commodities futures, "contango/backwardation" is "upwardly/downwardly sloping." and "backwardation/downwardly sloping" is normal because
+normally, a useful consummable commodity has a balanced supply relative to demand and
+it makes sense to sell the commodity now rather than to store it and sell it in the future.
+
+The following occurs as an exception:
+For the VIX, backwardation (downwardly sloping) is considered a bearish (pesimistic) sign for the underlying SP500 index because
+the market expects that the price of the SP500 will lower (with increased volatility) soon, and
+participants are willing to pay a premium for SP500 volatility protection right now.
+For a commodity, contango (upwardly sloping) is considered a bearish (pesimistic) sign for the markets because
+it occurs whenever a commodity has too much supply now relative to demand.
+In that case, it makes sense to store the commodity now and sell it in the future.
+
+

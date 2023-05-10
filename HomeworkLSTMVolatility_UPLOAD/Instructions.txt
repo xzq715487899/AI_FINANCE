@@ -1,0 +1,141 @@
+In this homework you use an LSTM to predict the VIX.
+The VIX is the "fear index" for the stock market (or its proxy, the SP&500 index).*
+It is a very important sentiment indicator for stocks as a whole.
+
+The VIX is calculated on the basis of the "implicit volatility" of the SP&500 index.
+This "implicit volatility" is a special volatility that is clearly related 
+to the observable volatility of the level or "price" of the SP&500 index but
+is actually obtained from an analysis of the price of OPTIONS on the S&P500, rather than
+from a direct analysis of the S&P500's own movements.
+These OPTIONS on the S&P500 index are insurance contracts that 
+investors buy to hedge or to bet in response to the S&P500's volatility behavior.
+So clearly, the observable volatility and the "implicit" volatility are closely related but not identical.
+This is why the VIX ALMOST looks like the mirror reflection of the S&P500 index.
+
+Knowing what the VIX will do in the future is very useful 
+if you are going to trade a VIX based ETN or a VIX based ETF.
+It is also useful if you are going to sell options.
+
+We are going to use an LSTM to forecast the VIX based on 9 predictors.
+The point of this homework is 
+to familiarize you with an LSTM's operation,
+to familiarize you with the VIX, and
+to familiarize you with a feature called VIXContangoBackwardation that 	
+turns out to be useful not only in the forecast of the VIX but 
+also in the forecast of the S&P500 itself.
+
+1. To construct the VIXContangoBackwardation feature, read: VIXContangoBackwardation.txt
+
+
+2. Open
+HomeworkLSTMVolatility\LSTMVolatility_2days_ahead_vix_incomplete\data\vol_dataset.csv
+and fill in the 9 data columns order from left to right:
+
+vix
+vixo
+vixo
+vixl
+sprtrn
+abs_sprtrn
+spindx
+vix3m/vix
+GEX
+
+
+vix is the vix close (target, do not shift it at all, the LSTM will shift it appropriately)
+vixo is the vix open (predictor)
+vixh is the vix high (predictor)
+vixl is the vix low (predictor)
+sprtrn is the S&P500 percent return (daily) (predictor)
+abs_sprtrn is absolute value of the sprtrn (predictor)
+spindx is the S&P500 index level (predictor)
+vix3/vix is the VIXContangoBackwardation feature (predictor)
+GEX is the GEX feature (predictor)
+
+Get the data from data_without_gex.csv and data_with_gex.csv
+
+3. Open
+HomeworkLSTMVolatility\LSTMVolatility_2days_ahead_vix_INCOMPLETE\config.json
+Change the configuration file to adapt it to the features (look for the #####)
+For guidance look at the Bitcoin LSTM we provided for this lesson.
+
+
+4. Open in Spyder
+HomeworkLSTMVolatility\LSTMVolatility_2days_ahead_vix_INCOMPLETE\main.py
+Run the main file (the LSTM), what is the System CAGR?
+
+5. Open
+HomeworkLSTMVolatility\LSTMVolatility_2days_ahead_vix_INCOMPLETE\config.json
+
+Using the data_without_gex.csv:
+Change the "sequence_length" to 5 and run the LSTM
+Change the squence length back to 4 and run the LSTM: which one is better in terms of System CAGR?
+Change the loss to "loss": "mse" and run the LSTM
+Change the loss back to "mae" and run the LSTM: which one is better in terms of the Training Curves?
+Change the "normalize" to false and run the LSTM
+Change the normalize back to true and run the LSTM: which one is better in terms of System CAGR?
+
+Using the data_with_gex.csv:
+Remove the GEX feature and run the LSTM
+Add the GEX feature back in and run the LSTM: which one is better in terms of System CAGR?
+
+
+6. SSRN-id3874249.pdf (included) argues that the VIX is manipulated.
+
+Note the dates:
+February 24, 2020: the stock market crash caused by COVID 19.
+March 11, 2021: the US Congress passed the H.R.1319 - American Rescue Plan Act of 2021.
+
+Given these dates,
+Given the contrasting results of the trading system within (and beyond) these dates,
+Given the graph of the SP&500 index (^SPX) for the same dates here:
+https://finance.yahoo.com/quote/%5Espx/
+and
+Given that the VIX is ultimately based on the volatility of the S&P500:
+Do you think the VIX may be manipulated?
+(personal opinion, not graded)
+
+
+Return the answer to these questions in a text document.
+NO need to upload the LSTM.
+
+  
+PROBLEMS RUNNING THE LSTM
+
+downgrade numpy to < 1.20
+
+as per:
+https://stackoverflow.com/questions/58479556/notimplementederror-cannot-convert-a-symbolic-tensor-2nd-target0-to-a-numpy
+
+
+keras                     2.2.4                         0
+keras-applications        1.0.8                      py_1
+keras-base                2.2.4                    py37_0
+keras-preprocessing       1.1.2              pyhd3eb1b0_0
+numpy                     1.19.2           py37hadc3359_0
+numpy-base                1.19.2           py37ha3acd2a_0
+pandas                    1.2.4            py37hd77b12b_0
+python                    3.7.9                h60c2a47_0
+tensorboard               1.15.0             pyhb230dea_0
+tensorflow                1.15.0          eigen_py37h9f89a44_0
+tensorflow-base           1.15.0          eigen_py37h07d2309_0
+tensorflow-estimator      1.15.1             pyh2649769_0
+tensorflow-probability    0.14.1                   pypi_0    pypi
+spyder                    3.3.6                    py37_0
+
+Data for the LSTM:
+In case you want to run the LSTM with new data we have included the file DataPrep\ProcessData.py because
+the data may not be aligned and this py script aligns the data.
+It is useful to know that to align data, you use joins, and then 
+if there are any Nans,
+you forward-fill the Nans first, and then 
+back-fill the remaining Nans.
+This is what DataPrep\ProcessData.py does.
+
+============
+*The VIX index is the weighted average price of a portfolio of OTM (out of the money) SPX stock options 
+with tenor of 23 to 37 days.
+You cannot trade the VIX directly, instead you need to trade a product based on the VIX like the VXX or VXXB 
+(there are a number of such products).
+The VXXB is an Exchange Traded Note (ETN) that tracks the VIX short-term futures.
+The VXXB is a portfolio composed of the front two month VIX futures that bear continuously changing weights.

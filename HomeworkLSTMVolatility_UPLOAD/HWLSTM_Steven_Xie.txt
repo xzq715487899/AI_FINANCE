@@ -1,0 +1,73 @@
+4. Open in Spyder
+HomeworkLSTMVolatility\LSTMVolatility_2days_ahead_vix_INCOMPLETE\main.py
+Run the main file (the LSTM), what is the System CAGR?
+
+System CAGR: 16.0%
+System Sharpe: 0.1
+Market CAGR: 5.7%
+Market Sharpe: 0.0
+
+5. Open
+HomeworkLSTMVolatility\LSTMVolatility_2days_ahead_vix_INCOMPLETE\config.json
+
+Using the data_without_gex.csv:
+Change the "sequence_length" to 5 and run the LSTM
+System CAGR: -90.3%
+System Sharpe: -1.4
+Market CAGR: 4.5%
+Market Sharpe: 0.0
+
+Change the squence length back to 4 and run the LSTM: which one is better in terms of System CAGR?
+System CAGR: -88.6%
+System Sharpe: -1.3
+Market CAGR: 6.3%
+Market Sharpe: 0.0
+
+Sequence length 4 is better in terms of System CAGR.
+
+
+Change the loss to "loss": "mse" and run the LSTM
+System CAGR: -87.7%
+System Sharpe: -1.3
+Market CAGR: 6.3%
+Market Sharpe: 0.0
+
+Change the loss back to "mae" and run the LSTM: which one is better in terms of the Training Curves?
+System CAGR: -89.3%
+System Sharpe: -1.4
+Market CAGR: 6.3%
+Market Sharpe: 0.0
+
+mae is better in terms of the training curves with aorund loss around 7.5, mse loss is around 6000
+
+Change the "normalize" to false and run the LSTM
+System CAGR: -42.1%
+System Sharpe: -0.4
+Market CAGR: 6.3%
+Market Sharpe: 0.0
+Change the normalize back to true and run the LSTM: which one is better in terms of System CAGR?
+System CAGR: -88.6%
+System Sharpe: -1.3
+Market CAGR: 6.3%
+Market Sharpe: 0.0
+
+"normalize" to false is better in terms of System CAGR
+
+Using the data_with_gex.csv:
+Remove the GEX feature and run the LSTM
+System CAGR: -89.5%
+System Sharpe: -1.4
+Market CAGR: 5.7%
+Market Sharpe: 0.0
+Add the GEX feature back in and run the LSTM: which one is better in terms of System CAGR?
+System CAGR: -88.8%
+System Sharpe: -1.3
+Market CAGR: 5.7%
+Market Sharpe: 0.0
+
+With added GEX feature back, the model is better in terms of System CAGR
+
+6.Given that the VIX is ultimately based on the volatility of the S&P500:
+Do you think the VIX may be manipulated?
+I would say VIX is not manipulated because it is consistant with the S&P500 market behavior. VIX is great in terms of 
+risk hedging without adding leverage like buying or selling options.
